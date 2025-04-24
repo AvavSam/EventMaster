@@ -31,32 +31,36 @@
       <nav class="py-4">
         <ul class="space-y-1">
           <li>
-            <a href="#"
-              class="flex items-center space-x-3 px-6 py-3 bg-gray-700 text-blue-400 border-l-4 border-blue-400">
+            <a href="{{ route('dashboard') }}"
+              class="{{ request()->is('/') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
               <i data-lucide="layout-dashboard"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="{{ route('events.index') }}"
+              class="{{ request()->is('events') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
               <i data-lucide="calendar"></i>
               <span>Events</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="{{ route('buyers.index') }}"
+              class="{{ request()->is('buyers') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
               <i data-lucide="users"></i>
               <span>Buyers</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="{{ route('purchases.index') }}"
+              class="{{ request()->is('purchases') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
               <i data-lucide="shopping-cart"></i>
               <span>Purchases</span>
             </a>
           </li>
           <li>
-            <a href="#" class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+            <a href="#"
+              class="{{ request()->is('reports') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
               <i data-lucide="bar-chart-3"></i>
               <span>Reports</span>
             </a>
@@ -96,36 +100,36 @@
           <nav class="py-4">
             <ul class="space-y-1">
               <li>
-                <a href="#"
-                  class="flex items-center space-x-3 px-6 py-3 bg-gray-700 text-blue-400 border-l-4 border-blue-400">
+                <a href="{{ route('dashboard') }}"
+                  class="{{ request()->is('/') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
                   <i data-lucide="layout-dashboard"></i>
                   <span>Dashboard</span>
                 </a>
               </li>
               <li>
-                <a href="#"
-                  class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+                <a href="{{ route('events.index') }}"
+                  class="{{ request()->is('events') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
                   <i data-lucide="calendar"></i>
                   <span>Events</span>
                 </a>
               </li>
               <li>
-                <a href="#"
-                  class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+                <a href="{{ route('buyers.index') }}"
+                  class="{{ request()->is('buyers') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
                   <i data-lucide="users"></i>
                   <span>Buyers</span>
                 </a>
               </li>
               <li>
-                <a href="#"
-                  class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+                <a href="{{ route('purchases.index') }}"
+                  class="{{ request()->is('purchases') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
                   <i data-lucide="shopping-cart"></i>
                   <span>Purchases</span>
                 </a>
               </li>
               <li>
                 <a href="#"
-                  class="flex items-center space-x-3 px-6 py-3 text-gray-300 hover:bg-gray-700 hover:text-white">
+                  class="{{ request()->is('reports') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
                   <i data-lucide="bar-chart-3"></i>
                   <span>Reports</span>
                 </a>

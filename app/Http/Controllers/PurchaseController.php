@@ -2,31 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buyer;
 use App\Models\Event;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
+    $purchases = Purchase::all();
+    $buyers = Buyer::all();
+    $events = Event::all();
+    return view('purchases.index', compact('purchases', 'buyers', 'events'));
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    //
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+  /**
+   * Store a newly created resource in storage.
+   */
   public function store(Request $request, Event $event)
   {
     $data = $request->validate([
@@ -42,25 +46,25 @@ class PurchaseController extends Controller
     return back()->with('success', 'Buyer assigned to event successfully.');
   }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+  /**
+   * Display the specified resource.
+   */
+  public function show(string $id)
+  {
+    //
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(string $id)
+  {
+    //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     */
+  /**
+   * Update the specified resource in storage.
+   */
   public function update(Request $request, Purchase $purchase)
   {
     $data = $request->validate([
@@ -72,9 +76,9 @@ class PurchaseController extends Controller
     return back()->with('success', 'Purchase updated successfully.');
   }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+  /**
+   * Remove the specified resource from storage.
+   */
   public function destroy(Purchase $purchase)
   {
     $purchase->delete();
