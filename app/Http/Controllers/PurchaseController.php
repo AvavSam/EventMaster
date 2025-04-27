@@ -68,13 +68,14 @@ class PurchaseController extends Controller
   public function update(Request $request, Purchase $purchase)
   {
     $data = $request->validate([
-      'qty' => 'required|integer|min:1',
+      'qty' => 'sometimes|integer|min:1',
       'status' => 'required|in:pending,paid',
     ]);
 
     $purchase->update($data);
     return back()->with('success', 'Purchase updated successfully.');
   }
+
 
   /**
    * Remove the specified resource from storage.

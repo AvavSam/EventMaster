@@ -47,7 +47,11 @@ class EventController extends Controller
      */
   public function show(Event $event)
   {
-    return view('events.show', compact('event'));
+    $buyers = \App\Models\Buyer::all(); // Assuming you have a relationship defined in the Event model
+    return view('events.show', [
+      'event' => $event,
+      'buyers' => $buyers // Pass the buyers to the view
+    ]);
   }
 
     /**

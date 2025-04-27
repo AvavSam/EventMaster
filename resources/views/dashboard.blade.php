@@ -83,15 +83,19 @@
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
             <div class="flex space-x-2">
-            <button class="text-blue-600 hover:text-blue-900">
+            <a href="{{ route('events.show', $event->id) }}" class="text-blue-600 hover:text-blue-900">
               <i data-lucide="eye"></i>
-            </button>
-            <button class="text-yellow-600 hover:text-yellow-900">
+            </a>
+            <a href="{{ route('events.edit', $event->id) }}" class="text-yellow-600 hover:text-yellow-900">
               <i data-lucide="edit"></i>
-            </button>
-            <button class="text-red-600 hover:text-red-900">
+            </a>
+            <form action="{{ route('events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?')">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="text-red-600 hover:text-red-900">
               <i data-lucide="trash"></i>
-            </button>
+              </button>
+            </form>
             </div>
           </td>
           </tr>
@@ -117,7 +121,7 @@
               </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-              @foreach($buyers as $buyer)
+              @foreach($buyers->take(10) as $buyer)
           <tr class="hover:bg-gray-50">
             <td class="px-6 py-4 whitespace-nowrap">
             <div class="text-sm font-medium text-gray-900">{{ $buyer->name }}</div>

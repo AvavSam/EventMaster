@@ -1,163 +1,124 @@
 @props(['title', 'section_title' => 'Menu'])
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $title }} - EventMaster</title>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>{{ $title }} - EventMaster</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="bg-gray-50">
-  <div class="flex h-screen overflow-hidden">
-    <!-- Sidebar -->
-    <aside class="w-64 bg-gray-800 text-white h-full flex-shrink-0 hidden md:block">
-      <!-- Logo -->
-      <div class="px-6 py-4 border-b border-gray-700">
-        <div class="flex items-center space-x-2">
-          <i data-lucide="calendar" class="text-blue-400" size="24"></i>
-          <span class="text-xl font-bold">EventMaster</span>
-        </div>
-      </div>
+    <div x-data="{ isSidebarOpen: false }" class="min-h-screen">
+        <!-- Backdrop -->
+        <div
+            x-show="isSidebarOpen"
+            x-transition:enter="transition-opacity ease-linear duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition-opacity ease-linear duration-300"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 bg-transparent bg-opacity-75 z-20 md:hidden"
+            @click="isSidebarOpen = false"
+        ></div>
 
-      <!-- Menu -->
-      <nav class="py-4">
-        <ul class="space-y-1">
-          <li>
-            <a href="{{ route('dashboard') }}"
-              class="{{ request()->is('/') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-              <i data-lucide="layout-dashboard"></i>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('events.index') }}"
-              class="{{ request()->is('events') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-              <i data-lucide="calendar"></i>
-              <span>Events</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('buyers.index') }}"
-              class="{{ request()->is('buyers') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-              <i data-lucide="users"></i>
-              <span>Buyers</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{ route('purchases.index') }}"
-              class="{{ request()->is('purchases') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-              <i data-lucide="shopping-cart"></i>
-              <span>Purchases</span>
-            </a>
-          </li>
-          <li>
-            <a href="#"
-              class="{{ request()->is('reports') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-              <i data-lucide="bar-chart-3"></i>
-              <span>Reports</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </aside>
-
-    <!-- Mobile Sidebar -->
-    <div x-data="{ isOpen: false }" class="md:hidden">
-      <!-- Mobile menu button -->
-      <button @click="isOpen = true"
-        class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100">
-        <i data-lucide="menu"></i>
-      </button>
-
-      <!-- Mobile sidebar -->
-      <div x-show="isOpen" class="fixed inset-0 z-50 md:hidden" x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0">
-        <!-- Overlay -->
-        <div class="fixed inset-0 bg-gray-600 bg-opacity-75" @click="isOpen = false"></div>
-
-        <!-- Sidebar panel -->
-        <div class="fixed inset-y-0 left-0 flex flex-col w-64 bg-gray-800">
-          <div class="px-4 py-4 flex items-center justify-between border-b border-gray-700">
-            <div class="flex items-center space-x-2">
-              <i data-lucide="calendar" class="text-blue-400"></i>
-              <span class="text-xl font-bold text-white">EventMaster</span>
+        <!-- Sidebar -->
+        <aside
+            x-cloak
+            :class="{'translate-x-0': isSidebarOpen, '-translate-x-full': !isSidebarOpen}"
+            class="fixed inset-y-0 left-0 z-30 w-64 bg-gray-800 overflow-y-auto md:translate-x-0"
+        >
+            <!-- Logo -->
+            <div class="flex items-center justify-between h-16 px-4 bg-gray-900">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="calendar" class="text-blue-400 w-6 h-6"></i>
+                    <span class="text-xl font-bold text-white">EventMaster</span>
+                </div>
+                <button
+                    @click="isSidebarOpen = false"
+                    class="md:hidden text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
             </div>
-            <button class="text-gray-400 hover:text-white" @click="isOpen = false">
-              <i data-lucide="x"></i>
-            </button>
-          </div>
 
-          <nav class="py-4">
-            <ul class="space-y-1">
-              <li>
+            <!-- Navigation -->
+            <nav class="mt-4 px-2 space-y-1">
                 <a href="{{ route('dashboard') }}"
-                  class="{{ request()->is('/') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-                  <i data-lucide="layout-dashboard"></i>
-                  <span>Dashboard</span>
+                    class="{{ request()->is('/') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
+                >
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                    <span>Dashboard</span>
                 </a>
-              </li>
-              <li>
+
                 <a href="{{ route('events.index') }}"
-                  class="{{ request()->is('events') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-                  <i data-lucide="calendar"></i>
-                  <span>Events</span>
+                    class="{{ request()->is('events*') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
+                >
+                    <i data-lucide="calendar" class="w-5 h-5"></i>
+                    <span>Events</span>
                 </a>
-              </li>
-              <li>
+
                 <a href="{{ route('buyers.index') }}"
-                  class="{{ request()->is('buyers') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-                  <i data-lucide="users"></i>
-                  <span>Buyers</span>
+                    class="{{ request()->is('buyers*') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
+                >
+                    <i data-lucide="users" class="w-5 h-5"></i>
+                    <span>Buyers</span>
                 </a>
-              </li>
-              <li>
+
                 <a href="{{ route('purchases.index') }}"
-                  class="{{ request()->is('purchases') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-                  <i data-lucide="shopping-cart"></i>
-                  <span>Purchases</span>
+                    class="{{ request()->is('purchases*') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
+                >
+                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                    <span>Purchases</span>
                 </a>
-              </li>
-              <li>
-                <a href="#"
-                  class="{{ request()->is('reports') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} flex items-center space-x-3 px-6 py-3">
-                  <i data-lucide="bar-chart-3"></i>
-                  <span>Reports</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="md:ml-64">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm z-10">
+                <div class="flex items-center justify-between h-16 px-4 sm:px-6">
+                    <div class="flex items-center gap-3">
+                        <button
+                            @click="isSidebarOpen = !isSidebarOpen"
+                            class="md:hidden text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <i data-lucide="menu" class="w-6 h-6"></i>
+                        </button>
+                        <h1 class="text-lg font-semibold text-gray-800 truncate">{{ $section_title }}</h1>
+                    </div>
+
+                    <!-- <div class="flex items-center gap-4">
+                        <button class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-150 ease-in-out">
+                            <span class="text-sm font-medium">Logout</span>
+                            <i data-lucide="log-out" class="w-5 h-5"></i>
+                        </button>
+                    </div> -->
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 focus:outline-none">
+                <div class="py-6">
+                    <div class="px-4 sm:px-6 lg:px-8">
+                        {{ $slot }}
+                    </div>
+                </div>
+            </main>
         </div>
-      </div>
     </div>
-    <!-- Main Content -->
-    <div class="flex-1 overflow-auto">
-      <!-- Navbar -->
-      <nav class="bg-white px-6 py-3 flex items-center justify-between">
-        <h1 class="text-lg font-semibold text-gray-800">{{ $section_title }}</h1>
-        <!-- <button class="flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors">
-              <span>Logout</span>
-              <i data-lucide="log-out"></i>
-            </button> -->
-      </nav>
-      <!-- Main Content -->
-      {{ $slot }}
-    </div>
-  </div>
 
-  <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-  </script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
-
 </html>

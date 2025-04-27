@@ -12,8 +12,8 @@ class BuyerController extends Controller
      */
     public function index()
     {
-    $buyers = Buyer::all();
-    return view('buyers.index', compact('buyers'));
+        $buyers = Buyer::all();
+        return view('buyers.index', compact('buyers'));
     }
 
     /**
@@ -21,7 +21,7 @@ class BuyerController extends Controller
      */
     public function create()
     {
-    return view('buyers.create');
+        return view('buyers.create');
     }
 
     /**
@@ -29,14 +29,18 @@ class BuyerController extends Controller
      */
     public function store(Request $request)
     {
-    $data = $request->validate([
-      'name' => 'required|string|max:150',
-      'email' => 'required|email|unique:buyers,email',
-      'phone' => 'nullable|string|max:50',
-    ]);
+        $data = $request->validate([
+            'name' => 'required|string|max:150',
+            'email' => 'required|email|unique:buyers,email',
+            'phone' => 'required|string|regex:/^[8][0-9]{8,11}$/',
+        ]);
 
-    Buyer::create($data);
-    return redirect()->route('buyers.index')->with('success', 'Buyer added successfully.');
+        if (isset($data['phone'])) {
+            $data['phone'] = '(+62) ' . $data['phone'];
+        }
+
+        Buyer::create($data);
+        return redirect()->route('buyers.index')->with('success', 'Buyer added successfully.');
     }
 
     /**
@@ -50,32 +54,36 @@ class BuyerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-  public function edit(Buyer $buyer)
-  {
-    return view('buyers.edit', compact('buyer'));
-  }
+    public function edit(Buyer $buyer)
+    {
+        return view('buyers.edit', compact('buyer'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
-  public function update(Request $request, Buyer $buyer)
-  {
-    $data = $request->validate([
-      'name' => 'required|string|max:150',
-      'email' => 'required|email|unique:buyers,email,'.$buyer->id,
-      'phone' => 'nullable|string|max:50',
-    ]);
+    public function update(Request $request, Buyer $buyer)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:150',
+            'email' => 'required|email|unique:buyers,email,'.$buyer->id,
+            'phone' => 'required|string|regex:/^[8][0-9]{8,11}$/',
+        ]);
 
-    $buyer->update($data);
-    return redirect()->route('buyers.index')->with('success', 'Buyer updated successfully.');
-  }
+        if (isset($data['phone'])) {
+            $data['phone'] = '(+62) ' . $data['phone'];
+        }
+
+        $buyer->update($data);
+        return redirect()->route('buyers.index')->with('success', 'Buyer updated successfully.');
+    }
 
     /**
      * Remove the specified resource from storage.
      */
-  public function destroy(Buyer $buyer)
-  {
-    $buyer->delete();
-    return redirect()->route('buyers.index')->with('success', 'Buyer deleted successfully.');
-  }
+    public function destroy(Buyer $buyer)
+    {
+        $buyer->delete();
+        return redirect()->route('buyers.index')->with('success', 'Buyer deleted successfully.');
+    }
 }

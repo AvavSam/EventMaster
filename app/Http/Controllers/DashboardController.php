@@ -15,7 +15,7 @@ class DashboardController extends Controller
   public function index()
   {
     $events = Event::with('purchases')->get();
-    $buyers = Buyer::latest()->take(10)->get();
+    $buyers = Buyer::all();
     $purchases = Purchase::with(['buyer', 'event'])->latest()->take(10)->get();
 
     return view('dashboard', compact('events', 'buyers', 'purchases'));
