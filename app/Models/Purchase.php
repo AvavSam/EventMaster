@@ -8,7 +8,12 @@ class Purchase extends Model
 {
   protected $table = 'purchases';
 
-  protected $fillable = ['event_id', 'buyer_id', 'qty', 'status', 'purchased_at'];
+  protected $fillable = ['event_id', 'buyer_id', 'user_id', 'qty', 'status', 'purchased_at'];
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 
   /**
    * The event for this purchase.

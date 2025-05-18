@@ -50,10 +50,10 @@ class EventController extends Controller
    */
   public function show(Event $event)
   {
-    $buyers = \App\Models\Buyer::all(); // Assuming you have a relationship defined in the Event model
+    $buyers = \App\Models\Buyer::all();
     return view('admin.events.show', [
       'event' => $event,
-      'buyers' => $buyers, // Pass the buyers to the view
+      'buyers' => $buyers,
     ]);
   }
 

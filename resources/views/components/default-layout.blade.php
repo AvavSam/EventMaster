@@ -116,17 +116,6 @@
               <span>Events</span>
             </a>
             <a
-              href="{{ route('user.dashboard') }}"
-              class="{{
-                request()->routeIs('user.dashboard')
-                  ? 'border-l-4 border-blue-400 bg-gray-700 text-blue-400'
-                  : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-              }} flex items-center gap-3 rounded-md px-4 py-3 text-sm font-medium transition-colors duration-150 ease-in-out"
-            >
-              <i data-lucide="ticket" class="h-5 w-5"></i>
-              <span>My Tickets</span>
-            </a>
-            <a
               href="{{ route('user.profile.edit') }}"
               class="{{
                 request()->is('user/profile*')

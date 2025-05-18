@@ -6,6 +6,10 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
 use App\Http\Controllers\Admin\EventController as AdminEvent;
 use App\Http\Controllers\Admin\BuyerController as AdminBuyer;
 use App\Http\Controllers\Admin\PurchaseController as AdminPurchase;
+use App\Http\Controllers\User\DashboardController as UserDashboard;
+use App\Http\Controllers\User\EventController as UserEvent;
+use App\Http\Controllers\User\ProfileController as UserProfile;
+use App\Http\Controllers\User\TicketController as UserTicket;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +39,21 @@ Route::prefix('admin')
     Route::put('purchases/{purchase}', [AdminPurchase::class, 'update'])->name('purchases.update');
     Route::delete('purchases/{purchase}', [AdminPurchase::class, 'destroy'])->name('purchases.destroy');
   });
+
+/*
+|--------------------------------------------------------------------------
+| User Routes (Auth Protected)
+|--------------------------------------------------------------------------
+*/
+Route::prefix('user')
+  ->name('user.')
+  ->middleware(['auth', 'can:user'])
+  ->group(function () {
+  Route::get('/', [UserDashboard::class, 'index'])->name('dashboard');
+  Route::get('events', [UserEvent::class, 'index'])->name('events.index');
+  Route::get('events/{event}', [UserEvent::class, 'show'])->name('events.show');
+  Route::post('events/{event}/purchase', [UserEvent::class, 'purchase'])->name('events.purchase');
+  Route::get('profile', [UserProfile::class, 'edit'])->name('profile.edit');
+  Route::put('profile', [UserProfile::class, 'update'])->name('profile.update');
+  Route::get('tickets/{purchase}', [UserTicket::class, 'show'])->name('tickets.show');
+});

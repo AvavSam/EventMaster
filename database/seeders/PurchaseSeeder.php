@@ -17,7 +17,6 @@ class PurchaseSeeder extends Seeder
         $buyers = Buyer::all();
 
         foreach ($buyers as $buyer) {
-            // each buyer may purchase 1-3 tickets from random event
             $event = $events->random();
             Purchase::create([
                 'event_id'     => $event->id,
