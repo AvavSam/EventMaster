@@ -4,7 +4,7 @@
       <!-- Header with Back Button -->
       <div class="flex justify-between items-center mb-8">
         <h1 class="text-2xl font-bold text-gray-900">Detail Event</h1>
-        <a href="{{ route('events.index') }}"
+        <a href="{{ route('admin.events.index') }}"
           class="flex items-center text-gray-600 hover:text-gray-800 transition-colors duration-200">
           <i data-lucide="arrow-left" class="w-5 h-5 mr-1"></i>
           Kembali
@@ -66,16 +66,17 @@
                   @forelse($event->purchases as $purchase)
                     <tr class="hover:bg-gray-50">
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm font-medium text-gray-900">{{ $purchase->buyer->name }}</div>
+                      <div class="text-sm font-medium text-gray-900">{{ $purchase->buyer->name }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-500">{{ $purchase->buyer->email }}</div>
+                      <div class="text-sm text-gray-500">{{ $purchase->buyer->email }}</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-500">{{ $purchase->qty }} tiket</div>
+                      <div class="text-sm text-gray-500">{{ $purchase->qty }} tiket</div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <form action="{{ route('purchases.update', $purchase->id) }}" method="POST" class="inline-block">
+                      <form action="{{ route('admin.purchases.update', $purchase->id) }}" method="POST"
+                      class="inline-block">
                       @csrf
                       @method('PUT')
                       <select name="status" onchange="this.form.submit()" class="text-xs font-semibold rounded-full px-2 py-1 leading-5
@@ -84,24 +85,24 @@
             'pending' => 'bg-yellow-100 text-yellow-800',
             default => 'bg-gray-100 text-gray-800'
             } }} border-transparent focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                      <option value="pending" {{ $purchase->status === 'pending' ? 'selected' : '' }}>Pending</option>
-                      <option value="paid" {{ $purchase->status === 'paid' ? 'selected' : '' }}>Paid</option>
+                        <option value="pending" {{ $purchase->status === 'pending' ? 'selected' : '' }}>Pending</option>
+                        <option value="paid" {{ $purchase->status === 'paid' ? 'selected' : '' }}>Paid</option>
                       </select>
-                    </form>
+                      </form>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-500">
-                    {{ \Carbon\Carbon::parse($purchase->purchased_at)->format('d M Y H:i') }}
-                    </div>
+                      <div class="text-sm text-gray-500">
+                      {{ \Carbon\Carbon::parse($purchase->purchased_at)->format('d M Y H:i') }}
+                      </div>
                     </td>
                     </tr>
           @empty
-        <tr>
-        <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
-          Belum ada pembelian tiket untuk event ini.
-        </td>
-        </tr>
-      @endforelse
+            <tr>
+            <td colspan="5" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+              Belum ada pembelian tiket untuk event ini.
+            </td>
+            </tr>
+          @endforelse
                 </tbody>
               </table>
             </div>
@@ -112,7 +113,7 @@
         <div class="lg:col-span-1">
           <div class="bg-white rounded-lg shadow-md p-6">
             <h3 class="text-lg font-semibold text-gray-900 mb-4">Tambah Pembelian Tiket</h3>
-            <form action="{{ route('purchases.store', $event->id) }}" method="POST" class="space-y-4">
+            <form action="{{ route('admin.purchases.store', $event->id) }}" method="POST" class="space-y-4">
               @csrf
               <input type="hidden" name="event_id" value="{{ $event->id }}" />
 
@@ -150,7 +151,6 @@
                                 @error('status') @enderror">
                   <option value="pending" {{ old('status') == 'pending' ? 'selected' : '' }}>Pending</option>
                   <option value="paid" {{ old('status') == 'paid' ? 'selected' : '' }}>Paid</option>
-                  <option value="cancelled" {{ old('status') == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
                 </select>
                 @error('status')
           <p class="mt-1 text-sm text-red-600">{{ $message }}</p>

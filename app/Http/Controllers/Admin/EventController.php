@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 
@@ -13,7 +14,7 @@ class EventController extends Controller
     public function index()
     {
     $events = Event::all();
-    return view('events.index', compact('events'));
+    return view('admin.events.index', compact('events'));
     }
 
     /**
@@ -21,7 +22,7 @@ class EventController extends Controller
      */
     public function create()
     {
-    return view('events.create');
+    return view('admin.events.create');
     }
 
     /**
@@ -39,7 +40,7 @@ class EventController extends Controller
     ]);
 
     Event::create($data);
-    return redirect()->route('events.index')->with('success', 'Event created successfully.');
+    return redirect()->route('admin.events.index')->with('success', 'Event created successfully.');
     }
 
     /**
@@ -48,7 +49,7 @@ class EventController extends Controller
   public function show(Event $event)
   {
     $buyers = \App\Models\Buyer::all(); // Assuming you have a relationship defined in the Event model
-    return view('events.show', [
+    return view('admin.events.show', [
       'event' => $event,
       'buyers' => $buyers // Pass the buyers to the view
     ]);
@@ -59,7 +60,7 @@ class EventController extends Controller
      */
   public function edit(Event $event)
   {
-    return view('events.edit', compact('event'));
+    return view('admin.events.edit', compact('event'));
   }
 
     /**
@@ -77,7 +78,7 @@ class EventController extends Controller
     ]);
 
     $event->update($data);
-    return redirect()->route('events.index')->with('success', 'Event updated successfully.');
+    return redirect()->route('admin.events.index')->with('success', 'Event updated successfully.');
   }
 
     /**
@@ -86,6 +87,6 @@ class EventController extends Controller
   public function destroy(Event $event)
   {
     $event->delete();
-    return redirect()->route('events.index')->with('success', 'Event deleted successfully.');
+    return redirect()->route('admin.events.index')->with('success', 'Event deleted successfully.');
   }
 }

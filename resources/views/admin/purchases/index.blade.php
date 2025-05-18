@@ -63,7 +63,7 @@
       </div>
       </td>
       <td class="px-6 py-4 whitespace-nowrap">
-      <form action="{{ route('purchases.update', $purchase->id) }}" method="POST" class="inline-block">
+      <form action="{{ route('admin.purchases.update', $purchase->id) }}" method="POST" class="inline-block">
       @csrf
       @method('PUT')
       <select name="status" onchange="this.form.submit()" class="text-xs font-semibold rounded-full px-2 py-1 leading-5

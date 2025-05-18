@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Buyer;
 use App\Models\Event;
 use App\Models\Purchase;
@@ -17,7 +18,7 @@ class PurchaseController extends Controller
     $purchases = Purchase::all();
     $buyers = Buyer::all();
     $events = Event::all();
-    return view('purchases.index', compact('purchases', 'buyers', 'events'));
+    return view('admin.purchases.index', compact('purchases', 'buyers', 'events'));
   }
 
   /**

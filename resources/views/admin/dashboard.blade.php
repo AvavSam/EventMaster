@@ -83,13 +83,13 @@
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
             <div class="flex space-x-2">
-            <a href="{{ route('events.show', $event->id) }}" class="text-blue-600 hover:text-blue-900">
+            <a href="{{ route('admin.events.show', $event->id) }}" class="text-blue-600 hover:text-blue-900">
               <i data-lucide="eye"></i>
             </a>
-            <a href="{{ route('events.edit', $event->id) }}" class="text-yellow-600 hover:text-yellow-900">
+            <a href="{{ route('admin.events.edit', $event->id) }}" class="text-yellow-600 hover:text-yellow-900">
               <i data-lucide="edit"></i>
             </a>
-            <form action="{{ route('events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?')">
+            <form action="{{ route('admin.events.destroy', $event->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this event?')">
               @csrf
               @method('DELETE')
               <button type="submit" class="text-red-600 hover:text-red-900">

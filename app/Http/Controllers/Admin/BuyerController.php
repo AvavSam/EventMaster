@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Buyer;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class BuyerController extends Controller
     public function index()
     {
         $buyers = Buyer::all();
-        return view('buyers.index', compact('buyers'));
+        return view('admin.buyers.index', compact('buyers'));
     }
 
     /**
@@ -21,7 +22,7 @@ class BuyerController extends Controller
      */
     public function create()
     {
-        return view('buyers.create');
+        return view('admin.buyers.create');
     }
 
     /**
@@ -40,7 +41,7 @@ class BuyerController extends Controller
         }
 
         Buyer::create($data);
-        return redirect()->route('buyers.index')->with('success', 'Buyer added successfully.');
+        return redirect()->route('admin.buyers.index')->with('success', 'Buyer added successfully.');
     }
 
     /**
@@ -56,7 +57,7 @@ class BuyerController extends Controller
      */
     public function edit(Buyer $buyer)
     {
-        return view('buyers.edit', compact('buyer'));
+        return view('admin.buyers.edit', compact('buyer'));
     }
 
     /**
@@ -75,7 +76,7 @@ class BuyerController extends Controller
         }
 
         $buyer->update($data);
-        return redirect()->route('buyers.index')->with('success', 'Buyer updated successfully.');
+        return redirect()->route('admin.buyers.index')->with('success', 'Buyer updated successfully.');
     }
 
     /**
@@ -84,6 +85,6 @@ class BuyerController extends Controller
     public function destroy(Buyer $buyer)
     {
         $buyer->delete();
-        return redirect()->route('buyers.index')->with('success', 'Buyer deleted successfully.');
+        return redirect()->route('admin.buyers.index')->with('success', 'Buyer deleted successfully.');
     }
 }

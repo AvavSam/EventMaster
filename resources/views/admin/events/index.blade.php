@@ -4,7 +4,7 @@
     <!-- Header with Add Button -->
     <div class="mb-6 flex justify-between items-center">
       <h2 class="text-2xl font-bold text-gray-800">Daftar Event</h2>
-      <a href="{{ route('events.create') }}"
+      <a href="{{ route('admin.events.create') }}"
         class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
         <i data-lucide="plus" class="w-5 h-5"></i>
         <span>Tambah Event</span>
@@ -50,13 +50,13 @@
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
           <div class="flex space-x-2">
-            <a href="{{ route('events.show', $event) }}" class="text-blue-600 hover:text-blue-900">
+            <a href="{{ route('admin.events.show', $event) }}" class="text-blue-600 hover:text-blue-900">
             <i data-lucide="eye" class="w-5 h-5"></i>
             </a>
-            <a href="{{ route('events.edit', $event) }}" class="text-yellow-600 hover:text-yellow-900">
+            <a href="{{ route('admin.events.edit', $event) }}" class="text-yellow-600 hover:text-yellow-900">
             <i data-lucide="edit" class="w-5 h-5"></i>
             </a>
-            <form action="{{ route('events.destroy', $event) }}" method="POST" class="inline">
+            <form action="{{ route('admin.events.destroy', $event) }}" method="POST" class="inline">
             @csrf
             @method('DELETE')
             <button type="submit" class="text-red-600 hover:text-red-900"

@@ -3,7 +3,7 @@
     <!-- Header with Add Button -->
     <div class="mb-6 flex justify-between items-center">
       <h2 class="text-2xl font-bold text-gray-800">Daftar Pembeli</h2>
-      <a href="{{ route('buyers.create') }}"
+      <a href="{{ route('admin.buyers.create') }}"
         class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
         <i data-lucide="plus" class="w-5 h-5"></i>
         <span>Tambah Pembeli</span>
@@ -47,10 +47,10 @@
           </td>
           <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
           <div class="flex space-x-2">
-            <a href="{{ route('buyers.edit', $buyer) }}" class="text-yellow-600 hover:text-yellow-900">
+            <a href="{{ route('admin.buyers.edit', $buyer) }}" class="text-yellow-600 hover:text-yellow-900">
             <i data-lucide="edit" class="w-5 h-5"></i>
             </a>
-            <form action="{{ route('buyers.destroy', $buyer) }}" method="POST" class="inline">
+            <form action="{{ route('admin.buyers.destroy', $buyer) }}" method="POST" class="inline">
             @csrf
             @method('DELETE')
             <button type="submit" class="text-red-600 hover:text-red-900"

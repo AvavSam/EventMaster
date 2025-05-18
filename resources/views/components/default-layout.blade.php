@@ -47,37 +47,73 @@
 
             <!-- Navigation -->
             <nav class="mt-4 px-2 space-y-1">
-                <a href="{{ route('dashboard') }}"
-                    class="{{ request()->is('/') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
-                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
-                >
+                {{-- Dashboard untuk Admin & User --}}
+                <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}"
+                   class="{{ auth()->user()->role === 'admin'
+                             ? (request()->routeIs('admin.dashboard')
+                                ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                : 'text-gray-300 hover:bg-gray-700 hover:text-white')
+                             : (request()->routeIs('user.dashboard')
+                                ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                : 'text-gray-300 hover:bg-gray-700 hover:text-white') }}
+                        flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out">
                     <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
                     <span>Dashboard</span>
                 </a>
 
-                <a href="{{ route('events.index') }}"
-                    class="{{ request()->is('events*') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
-                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
-                >
-                    <i data-lucide="calendar" class="w-5 h-5"></i>
-                    <span>Events</span>
-                </a>
-
-                <a href="{{ route('buyers.index') }}"
-                    class="{{ request()->is('buyers*') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
-                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
-                >
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                    <span>Buyers</span>
-                </a>
-
-                <a href="{{ route('purchases.index') }}"
-                    class="{{ request()->is('purchases*') ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
-                    flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out"
-                >
-                    <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                    <span>Purchases</span>
-                </a>
+                @can('admin')
+                    {{-- Menu Admin --}}
+                    <a href="{{ route('admin.events.index') }}"
+                       class="{{ request()->is('admin/events*')
+                                 ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                            flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                        <span>Events</span>
+                    </a>
+                    <a href="{{ route('admin.buyers.index') }}"
+                       class="{{ request()->is('admin/buyers*')
+                                 ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                            flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out">
+                        <i data-lucide="users" class="w-5 h-5"></i>
+                        <span>Buyers</span>
+                    </a>
+                    <a href="{{ route('admin.purchases.index') }}"
+                       class="{{ request()->is('admin/purchases*')
+                                 ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                            flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        <span>Purchases</span>
+                    </a>
+                @else
+                    {{-- Menu User --}}
+                    <a href="{{ route('user.events.index') }}"
+                       class="{{ request()->is('user/events*')
+                                 ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                            flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out">
+                        <i data-lucide="calendar" class="w-5 h-5"></i>
+                        <span>Events</span>
+                    </a>
+                    <a href="{{ route('user.dashboard') }}"
+                       class="{{ request()->routeIs('user.dashboard')
+                                 ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                            flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out">
+                        <i data-lucide="ticket" class="w-5 h-5"></i>
+                        <span>My Tickets</span>
+                    </a>
+                    <a href="{{ route('user.profile.edit') }}"
+                       class="{{ request()->is('user/profile*')
+                                 ? 'bg-gray-700 text-blue-400 border-l-4 border-blue-400'
+                                 : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}
+                            flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors duration-150 ease-in-out">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                        <span>Profile</span>
+                    </a>
+                @endcan
             </nav>
         </aside>
 
@@ -96,12 +132,16 @@
                         <h1 class="text-lg font-semibold text-gray-800 truncate">{{ $section_title }}</h1>
                     </div>
 
-                    <!-- <div class="flex items-center gap-4">
-                        <button class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-150 ease-in-out">
-                            <span class="text-sm font-medium">Logout</span>
-                            <i data-lucide="log-out" class="w-5 h-5"></i>
-                        </button>
-                    </div> -->
+                    <div class="flex items-center gap-4">
+                        <form method="POST" action="{{ route('auth.logout') }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-150 ease-in-out">
+                                <span class="text-sm font-medium">Logout</span>
+                                <i data-lucide="log-out" class="w-5 h-5"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </header>
 

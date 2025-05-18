@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Buyer;
@@ -18,7 +19,7 @@ class DashboardController extends Controller
     $buyers = Buyer::all();
     $purchases = Purchase::with(['buyer', 'event'])->latest()->take(10)->get();
 
-    return view('dashboard', compact('events', 'buyers', 'purchases'));
+    return view('admin.dashboard', compact('events', 'buyers', 'purchases'));
   }
 
     /**
