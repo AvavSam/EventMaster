@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Buyer extends Model
 {
-  protected $fillable = [
-    'name', 'email', 'phone'
-  ];
+  protected $fillable = ['name', 'email', 'phone'];
 
   /**
    * Events this buyer has purchased tickets for.

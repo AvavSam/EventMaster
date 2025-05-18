@@ -77,7 +77,6 @@ class PurchaseController extends Controller
     return back()->with('success', 'Purchase updated successfully.');
   }
 
-
   /**
    * Remove the specified resource from storage.
    */

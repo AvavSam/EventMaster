@@ -1,5 +1,5 @@
 <x-auth-layout title="Register">
-  <div class="text-center mb-8">
+  <div class="mb-8 text-center">
     <h1 class="text-2xl font-bold text-gray-900">Buat Akun Baru</h1>
     <p class="mt-2 text-gray-600">Daftar untuk mulai mengelola event Anda</p>
   </div>
@@ -11,12 +11,18 @@
     <div>
       <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
       <div class="mt-1">
-        <input id="name" name="name" type="text" required value="{{ old('name') }}"
-          class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          placeholder="Masukkan nama lengkap">
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          value="{{ old('name') }}"
+          class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none sm:text-sm"
+          placeholder="Masukkan nama lengkap"
+        />
         @error('name')
-      <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-    @enderror
+          <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
       </div>
     </div>
 
@@ -24,12 +30,19 @@
     <div>
       <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
       <div class="mt-1">
-        <input id="email" name="email" type="email" autocomplete="email" required value="{{ old('email') }}"
-          class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          placeholder="nama@example.com">
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          value="{{ old('email') }}"
+          class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none sm:text-sm"
+          placeholder="nama@example.com"
+        />
         @error('email')
-      <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-    @enderror
+          <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
       </div>
     </div>
 
@@ -37,12 +50,18 @@
     <div>
       <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
       <div class="mt-1">
-        <input id="password" name="password" type="password" autocomplete="new-password" required
-          class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          placeholder="Minimal 8 karakter">
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="new-password"
+          required
+          class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none sm:text-sm"
+          placeholder="Minimal 8 karakter"
+        />
         @error('password')
-      <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-    @enderror
+          <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+        @enderror
       </div>
     </div>
 
@@ -50,15 +69,22 @@
     <div>
       <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Konfirmasi Password</label>
       <div class="mt-1">
-        <input id="password_confirmation" name="password_confirmation" type="password" required
-          class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-          placeholder="Masukkan password kembali">
+        <input
+          id="password_confirmation"
+          name="password_confirmation"
+          type="password"
+          required
+          class="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-500 focus:ring-blue-500 focus:outline-none sm:text-sm"
+          placeholder="Masukkan password kembali"
+        />
       </div>
     </div>
 
     <div>
-      <button type="submit"
-        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+      <button
+        type="submit"
+        class="flex w-full justify-center rounded-md border border-transparent bg-green-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-green-700 focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:outline-none"
+      >
         Daftar
       </button>
     </div>
@@ -67,9 +93,7 @@
   <div class="mt-6">
     <p class="text-center text-sm text-gray-600">
       Sudah punya akun?
-      <a href="{{ route('auth.login') }}" class="font-medium text-blue-600 hover:text-blue-500">
-        Masuk di sini
-      </a>
+      <a href="{{ route('auth.login') }}" class="font-medium text-blue-600 hover:text-blue-500">Masuk di sini</a>
     </p>
   </div>
 </x-auth-layout>

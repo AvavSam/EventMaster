@@ -8,9 +8,7 @@ class Purchase extends Model
 {
   protected $table = 'purchases';
 
-  protected $fillable = [
-    'event_id', 'buyer_id', 'qty', 'status', 'purchased_at'
-  ];
+  protected $fillable = ['event_id', 'buyer_id', 'qty', 'status', 'purchased_at'];
 
   /**
    * The event for this purchase.

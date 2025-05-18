@@ -33,7 +33,9 @@ class AuthController extends Controller
       'password' => $validated['password'],
     ]);
 
-    return redirect()->route('auth.login')->with('success', 'Register Success');
+    return redirect()
+      ->route('auth.login')
+      ->with('success', 'Register Success');
   }
 
   public function authenticate(Request $request)
@@ -47,7 +49,11 @@ class AuthController extends Controller
       $request->session()->regenerate();
 
       // Check if user is admin and redirect accordingly
-      if (auth()->user()->can('admin')) {
+      if (
+        auth()
+          ->user()
+          ->can('admin')
+      ) {
         return redirect()->route('admin.dashboard');
       }
 
@@ -55,9 +61,11 @@ class AuthController extends Controller
       return redirect()->route('user.dashboard');
     }
 
-    return back()->withErrors([
-      'email' => 'The provided credentials do not match our records.',
-    ])->onlyInput('email');
+    return back()
+      ->withErrors([
+        'email' => 'The provided credentials do not match our records.',
+      ])
+      ->onlyInput('email');
   }
 
   public function logout(Request $request)

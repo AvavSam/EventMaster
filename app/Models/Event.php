@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Event extends Model
 {
-  protected $fillable = [
-    'title', 'description', 'event_date', 'location', 'capacity', 'price'
-  ];
+  protected $fillable = ['title', 'description', 'event_date', 'location', 'capacity', 'price'];
 
   /**
    * Buyers registered for this event (many-to-many).
