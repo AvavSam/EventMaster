@@ -1,61 +1,233 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EventMaster
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive Laravel-based event management system for organizing, promoting, and managing events.
 
-## About Laravel
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![PHP Version](https://img.shields.io/badge/PHP-8.2%2B-blue)
+![Laravel Version](https://img.shields.io/badge/Laravel-v12.10-red)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [EventMaster](#eventmaster)
+  - [Table of Contents](#table-of-contents)
+  - [About The Project](#about-the-project)
+    - [Why This Project?](#why-this-project)
+  - [Features](#features)
+  - [Technology Stack](#technology-stack)
+  - [Project Structure](#project-structure)
+  - [Installation](#installation)
+    - [Prerequisites](#prerequisites)
+    - [Setup Instructions](#setup-instructions)
+  - [Usage](#usage)
+    - [User Authentication](#user-authentication)
+    - [Event Management](#event-management)
+    - [Event Discovery \& Registration](#event-discovery--registration)
+  - [Deployment](#deployment)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## About The Project
 
-## Learning Laravel
+EventMaster is a powerful event management platform developed using the Laravel framework. This project serves as the final assignment (tugas besar/tubes) for the Web Programming 2 practical course. The application provides comprehensive tools for event creators, attendees, and administrators to create, manage, discover, and participate in various types of events.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The platform allows users to create events, sell tickets, manage registrations, and analyze attendance metrics. With an intuitive user interface and robust backend functionality, EventMaster streamlines the entire event management process from conception to completion.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Why This Project?
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Solves real-world event management challenges
+* Demonstrates practical application of web development skills
+* Provides a scalable solution for event organizers of all sizes
+* Incorporates modern user experience design with powerful backend features
 
-## Laravel Sponsors
+## Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+* **Event Creation and Management**
+  * Create and publish events with detailed information
+  * Set custom ticket types and pricing
+  * Manage event capacity and registration limits
+  * Schedule recurring events
 
-### Premium Partners
+* **User Registration and Profiles**
+  * Secure user authentication system
+  * Personalized dashboards for organizers and attendees
+  * Event history and saved preferences
+  * Social sharing capabilities
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+* **Ticketing System**
+  * Multiple ticket tiers and pricing options
+  * QR code generation for easy check-in
+  * Automated email confirmations
+  * Refund and transfer capabilities
 
-## Contributing
+* **Search and Discovery**
+  * Advanced filtering and categorization
+  * Location-based event search
+  * Personalized event recommendations
+  * Featured and trending events sections
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* **Analytics and Reporting**
+  * Attendance tracking and statistics
+  * Revenue reporting
+  * Marketing performance metrics
+  * Export capabilities for data analysis
 
-## Code of Conduct
+## Technology Stack
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+* **Backend**
+  * [PHP 8.2+](https://www.php.net/) - Primary programming language
+  * [Laravel 12](https://laravel.com/) - PHP web framework
+  * [MySQL](https://www.mysql.com/) - Database for event and user data
 
-## Security Vulnerabilities
+* **Frontend**
+  * [Blade](https://laravel.com/docs/blade) - Laravel's templating engine
+  * [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Interactive UI elements
+  * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS) - Responsive styling
+  * [Bootstrap](https://getbootstrap.com/) - UI framework for responsive design
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* **Tools & Libraries**
+  * [Composer](https://getcomposer.org/) - PHP dependency manager
+  * [FakerPHP](https://github.com/fakerphp/faker) - Test data generation
+  * [Guzzle](https://github.com/guzzle/guzzle) - Location API integration
+  * [Laravel Cashier](https://laravel.com/docs/billing) - Payment processing
 
-## License
+* **Testing**
+  * [PHPUnit](https://phpunit.de/) - Testing framework
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Project Structure
+
+The application follows Laravel's standard directory structure with some custom organization:
+
+```
+eventmaster/
+├── app/                    # Application core code
+│   ├── Console/            # Custom Artisan commands
+│   ├── Http/               # Controllers, Middleware, Requests
+│   │   ├── Controllers/    # Application controllers
+│   │   ├── Middleware/     # HTTP middleware
+│   │   └── Requests/       # Form requests & validation
+│   ├── Models/             # Eloquent models
+│   ├── Providers/          # Service providers
+│   └── Services/           # Business logic services
+├── bootstrap/              # Framework bootstrap files
+├── config/                 # Configuration files
+├── database/               # Database migrations & seeds
+│   ├── factories/          # Model factories
+│   ├── migrations/         # Database migrations
+│   └── seeders/            # Database seeders
+├── public/                 # Publicly accessible files
+│   ├── css/                # Compiled CSS
+│   ├── js/                 # Compiled JavaScript
+│   └── storage/            # Public storage symlink
+├── resources/              # Frontend resources
+│   ├── css/                # CSS source files
+│   ├── js/                 # JavaScript source files
+│   └── views/              # Blade templates
+├── routes/                 # Application routes
+│   ├── api.php            # API routes
+│   └── web.php            # Web routes
+├── storage/                # Application storage
+├── tests/                  # Automated tests
+└── vendor/                 # Composer dependencies
+```
+
+## Installation
+
+### Prerequisites
+
+* PHP >= 8.2
+* Composer
+* MySQL or PostgreSQL
+* Node.js & npm (for frontend assets)
+
+### Setup Instructions
+
+1. Clone the repository
+   ```sh
+   git clone https://github.com/AvavSam/EventMaster.git
+   cd EventMaster
+   ```
+
+2. Install PHP dependencies
+   ```sh
+   composer install
+   ```
+
+3. Install JavaScript dependencies
+   ```sh
+   npm install
+   ```
+
+4. Create environment file
+   ```sh
+   cp .env.example .env
+   ```
+
+5. Generate application key
+   ```sh
+   php artisan key:generate
+   ```
+
+6. Configure your database in the .env file
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=eventmaster
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+7. Run database migrations and seeders
+   ```sh
+   php artisan migrate --seed
+   ```
+
+8. Compile assets
+   ```sh
+   npm run dev
+   ```
+
+9. Create storage symlink
+   ```sh
+   php artisan storage:link
+   ```
+
+10. Start the development server
+    ```sh
+    php artisan serve
+    ```
+
+11. Visit http://localhost:8000 in your browser
+
+## Usage
+
+### User Authentication
+
+1. Register a new account at `/register`
+2. Login with your credentials at `/login`
+3. Access your personalized dashboard at `/dashboard`
+
+### Event Management
+
+1. Create a new event at `/events/create`
+2. Manage your events at `/organizer/events`
+3. View analytics and attendance at `/organizer/analytics`
+4. Export attendee data in various formats (CSV, PDF)
+
+### Event Discovery & Registration
+
+1. Browse events at `/events`
+2. Search for events by category, date, or location
+3. Register for events and purchase tickets
+4. Access your tickets at `/my-tickets`
+
+
+## Deployment
+
+1. Configure your production environment
+2. Set appropriate environment variables in production
+3. Optimize the application:
+   ```sh
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
+4. Configure your web server (Apache/Nginx)

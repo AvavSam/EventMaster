@@ -69,4 +69,17 @@ class TicketController extends Controller
   {
     //
   }
+  /**
+   * Print the specified ticket.
+   */
+  public function print(Request $request, Purchase $purchase)
+  {
+    // Pastikan user hanya akses tiket miliknya
+    $user = $request->user();
+    if ($purchase->user_id !== $user->id) {
+      abort(403);
+    }
+
+    return view('user.tickets.print', compact('purchase'));
+  }
 }

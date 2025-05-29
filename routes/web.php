@@ -11,6 +11,10 @@ use App\Http\Controllers\User\EventController as UserEvent;
 use App\Http\Controllers\User\ProfileController as UserProfile;
 use App\Http\Controllers\User\TicketController as UserTicket;
 
+Route::get('/', function () {
+    return redirect()->route('auth.login');
+})->name('login');
+
 /*
 |--------------------------------------------------------------------------
 | Auth Routes
@@ -56,4 +60,5 @@ Route::prefix('user')
   Route::get('profile', [UserProfile::class, 'edit'])->name('profile.edit');
   Route::put('profile', [UserProfile::class, 'update'])->name('profile.update');
   Route::get('tickets/{purchase}', [UserTicket::class, 'show'])->name('tickets.show');
+  Route::get('tickets/{purchase}/print', [UserTicket::class, 'print'])->name('tickets.print');
 });
