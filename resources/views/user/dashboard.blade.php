@@ -137,13 +137,20 @@
                   {{ \Carbon\Carbon::parse($purchase->purchased_at)->format('d M Y H:i') }}
                 </td>
                 <td class="px-6 py-4 text-sm font-medium whitespace-nowrap">
-                  <a
-                    href="{{ route('user.tickets.show', $purchase->id) }}"
-                    class="inline-flex items-center text-blue-600 hover:text-blue-900"
-                  >
-                    <i data-lucide="ticket" class="mr-1 h-4 w-4"></i>
-                    Lihat Tiket
-                  </a>
+                  @if ($purchase->status === 'paid')
+                    <a
+                      href="{{ route('user.tickets.show', $purchase->id) }}"
+                      class="inline-flex items-center text-blue-600 hover:text-blue-900"
+                    >
+                      <i data-lucide="ticket" class="mr-1 h-4 w-4"></i>
+                      Lihat Tiket
+                    </a>
+                  @else
+                    <span class="inline-flex items-center text-gray-400">
+                      <i data-lucide="ticket" class="mr-1 h-4 w-4"></i>
+                      Selesaikan Pembayaran
+                    </span>
+                  @endif
                 </td>
               </tr>
             @endforeach

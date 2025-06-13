@@ -40,11 +40,25 @@ class PurchaseController extends Controller
       'status' => 'required|in:pending,paid',
     ]);
 
-    $data['event_id'] = $event->id;
-    $data['purchased_at'] = now();
-    Purchase::create($data);
+    // Cek apakah buyer sudah memiliki tiket untuk event ini
+    $existingPurchase = Purchase::where('event_id', $event->id)
+      ->where('buyer_id', $data['buyer_id'])
+      ->first();
 
-    return back()->with('success', 'Buyer assigned to event successfully.');
+    if ($existingPurchase) {
+      // Jika sudah ada, tambahkan jumlah tiket ke pembelian yang sudah ada
+      $existingPurchase->qty += $data['qty'];
+      $existingPurchase->save();
+
+      return back()->with('success', 'Jumlah tiket berhasil ditambahkan ke pembelian yang sudah ada.');
+    } else {
+      // Jika belum ada, buat pembelian baru
+      $data['event_id'] = $event->id;
+      $data['purchased_at'] = now();
+      Purchase::create($data);
+
+      return back()->with('success', 'Pembeli berhasil ditambahkan ke event.');
+    }
   }
 
   /**
